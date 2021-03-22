@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class CollisionDetector : MonoBehaviour
 {
-    public int Score = 0;
+    public int Score;
+    public GameManager scoreboard;
+    //public GameObject collectible = GameObject.FindWithTag("Collectible");
+    //public static bool collected = false;
+    
     
     // Start is called before the first frame update
     void Start()
@@ -18,19 +22,21 @@ public class CollisionDetector : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision other)
+    public void OnCollisionEnter(Collision other)
     {
+        GameObject collectible = GameObject.FindWithTag("Collectible");
+
         if (other.gameObject.tag == "Collectible")
         {
             Score += 25;
+            collectible.SetActive(false);
             Destroy(GameObject.FindWithTag("Collectible"));
+            scoreboard.UpdateScoreBoard(25);
+            
         }
         
         
     }
 
-    void OnGUI()
-    {
-        GUI.Box(new Rect(100, 100, 100, 100), Score.ToString());
-    }
+    
 }

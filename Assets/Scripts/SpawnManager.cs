@@ -9,8 +9,9 @@ public class SpawnManager : MonoBehaviour
     
     float spawnDistance = 20;
     private float startDelay = 2;
-    private float spawnIntervalMin = 1.5f;
+    private float spawnIntervalMin = 2.5f;
     private float spawnIntervalMax = 4.5f;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     void SpawnRandomGemstones()
@@ -36,5 +37,7 @@ public class SpawnManager : MonoBehaviour
         Vector3 spawnPos = playerPos + playerDirection * spawnDistance;
 
         Instantiate(gemstonePrefabs[gemstoneIndex], spawnPos, playerRotation);
+        
+            
     }
 }
