@@ -45006,6 +45006,7 @@ GameObject:
   - component: {fileID: 5347866709918801573}
   - component: {fileID: 5347866709918842497}
   - component: {fileID: 5347866709912204740}
+  - component: {fileID: 5347866709912204741}
   m_Layer: 0
   m_Name: ThirdPersonController
   m_TagString: Player
@@ -45027,6 +45028,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 0
   scoreboard: {fileID: 1076180715}
+--- !u!114 &5347866709912204741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5347866709912204739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 861ba5652068d014b86b1d959045e7df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectedGems: {fileID: 1584416068}
 --- !u!136 &5347866709916761539
 CapsuleCollider:
   m_ObjectHideFlags: 0
