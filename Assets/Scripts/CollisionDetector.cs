@@ -6,6 +6,8 @@ public class CollisionDetector : MonoBehaviour
 {
     public int Score;
     public GameManager scoreboard;
+    public int Health;
+
     //public GameObject collectible = GameObject.FindWithTag("Collectible");
     //public static bool collected = false;
     
@@ -25,6 +27,7 @@ public class CollisionDetector : MonoBehaviour
     public void OnCollisionEnter(Collision other)
     {
         GameObject collectible = GameObject.FindWithTag("Collectible");
+        GameObject enemy = GameObject.FindWithTag("Enemy");
 
         if (other.gameObject.tag == "Collectible")
         {
@@ -33,6 +36,13 @@ public class CollisionDetector : MonoBehaviour
             Destroy(GameObject.FindWithTag("Collectible"));
             scoreboard.UpdateScoreBoard(25);
             
+        }else if (other.gameObject.tag == "Enemy")
+        {
+            Health -= 1;
+            
+            enemy.SetActive(false);
+            Destroy(GameObject.FindWithTag("Enemy"));
+            scoreboard.UpdateScoreBoard(-100);
         }
         
         
