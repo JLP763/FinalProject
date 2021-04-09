@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 
 
@@ -10,12 +11,21 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI collectedGems;
     private int gemstones;
     bool gamehasended = false;
-    
+
+    public Slider slider;
+    public int maxHealth = 100;
+    public int currentHealth;
+
+  
+
+
     // Start is called before the first frame update
     void Start()
     {
-                UpdateScoreBoard(0);
-        
+        UpdateScoreBoard(0);
+        currentHealth = maxHealth;
+        SetMaxHealth(maxHealth);
+
     }
 
     // Update is called once per frame
@@ -25,13 +35,36 @@ public class GameManager : MonoBehaviour
         {
             EndGame();
         }
+
+        if (currentHealth == 0)
+        {
+            GameOver();
+        }
     }
 
     public void UpdateScoreBoard(int gemsToAdd)
     {
         gemstones += gemsToAdd;
-        collectedGems.text = "Gemstones: " + gemstones;
+        collectedGems.text = "Gemstones " + gemstones;
     }
+
+    public void SetMaxHealth(int health)
+    {
+        slider.maxValue = health;
+        slider.value = health;
+    }
+
+    public void SetHealth(int health)
+    {
+        slider.value = health;
+        
+    }
+
+    public void TakeDamage(int damage)
+        {
+        currentHealth -= damage;
+            SetHealth(damage);
+        }
 
     public void EndGame()
     {
@@ -47,7 +80,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    void GameOver()
+    public void GameOver()
     {
         SceneManager.LoadScene(2);
     }

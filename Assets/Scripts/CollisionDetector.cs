@@ -5,11 +5,8 @@ using UnityEngine;
 public class CollisionDetector : MonoBehaviour
 {
     public int Score;
-    public GameManager scoreboard;
-    public int Health;
-
-    //public GameObject collectible = GameObject.FindWithTag("Collectible");
-    //public static bool collected = false;
+    
+    public GameManager gameManager;
     
     
     // Start is called before the first frame update
@@ -34,16 +31,17 @@ public class CollisionDetector : MonoBehaviour
             Score += 25;
             collectible.SetActive(false);
             Destroy(GameObject.FindWithTag("Collectible"));
-            scoreboard.UpdateScoreBoard(25);
+            gameManager.UpdateScoreBoard(25);
             
         }else if (other.gameObject.tag == "Enemy")
         {
-            Health -= 1;
-            
             enemy.SetActive(false);
             Destroy(GameObject.FindWithTag("Enemy"));
-            scoreboard.UpdateScoreBoard(-100);
+            gameManager.UpdateScoreBoard(-100);
+            gameManager.TakeDamage(25);
         }
+
+        
         
         
     }
