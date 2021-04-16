@@ -7,12 +7,15 @@ public class CollisionDetector : MonoBehaviour
     public int Score;
     
     public GameManager gameManager;
+    private AudioSource collisionAudio;
+    public AudioClip playerHit;
+    public AudioClip gemCollected;
     
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        collisionAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,13 +35,16 @@ public class CollisionDetector : MonoBehaviour
             collectible.SetActive(false);
             Destroy(GameObject.FindWithTag("Collectible"));
             gameManager.UpdateScoreBoard(25);
-            
-        }else if (other.gameObject.tag == "Enemy")
+            collisionAudio.PlayOneShot(gemCollected, 1.0f);
+
+        }
+        else if (other.gameObject.tag == "Enemy")
         {
             enemy.SetActive(false);
             Destroy(GameObject.FindWithTag("Enemy"));
             gameManager.UpdateScoreBoard(-100);
             gameManager.TakeDamage(25);
+            collisionAudio.PlayOneShot(playerHit, 2.0f);
         }
 
         

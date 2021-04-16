@@ -6,6 +6,7 @@ public class EnemySpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
     public GameObject player;
+    //public AudioSource playerHit;
     
 
     float spawnDistance = 40;
@@ -19,7 +20,8 @@ public class EnemySpawnManager : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         InvokeRepeating("SpawnEnemy", startDelay, Random.Range(spawnIntervalMin, spawnIntervalMax));
-        
+        //playerHit = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -38,7 +40,12 @@ public class EnemySpawnManager : MonoBehaviour
         Vector3 spawnPos = playerPos + playerDirection * spawnDistance;
 
         Instantiate(enemyPrefabs[pirateIndex], spawnPos, playerRotation);
+    }
 
-
+    public void OnCollisionEnter(Collision other)
+    {
+        //GameObject player = GameObject.FindWithTag("Player");
+        //GetComponent<AudioSource>().Play();
+        //playerHit.Play();
     }
 }

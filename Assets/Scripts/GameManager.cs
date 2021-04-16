@@ -36,15 +36,16 @@ public class GameManager : MonoBehaviour
             EndGame();
         }
 
-        if (currentHealth == 0)
-        {
-            GameOver();
-        }
+        
     }
 
     public void UpdateScoreBoard(int gemsToAdd)
     {
         gemstones += gemsToAdd;
+        if(gemstones < 0)
+        {
+            gemstones = 0;
+        }
         collectedGems.text = "Gemstones " + gemstones;
     }
 
@@ -63,15 +64,20 @@ public class GameManager : MonoBehaviour
     public void TakeDamage(int damage)
         {
         currentHealth -= damage;
-            SetHealth(damage);
+            SetHealth(currentHealth);
+
+        if (currentHealth == 0)
+        {
+            GameOverLost();
         }
+    }
 
     public void EndGame()
     {
         if (gamehasended == false)
         {
             gamehasended = true;
-            GameOver();
+            GameOverWin();
         }
     }
 
@@ -80,8 +86,13 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void GameOver()
+    public void GameOverWin()
     {
         SceneManager.LoadScene(2);
+    }
+
+    public void GameOverLost()
+    {
+        SceneManager.LoadScene(3);
     }
 }

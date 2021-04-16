@@ -3,7 +3,10 @@ guid: 16097c4e03670a743a166f26de27f42b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - gameManager: {instanceID: 0}
+  - playerHit: {fileID: 8300000, guid: 17c1892034ffa91439e700d3a4439d7e, type: 3}
+  - gemCollected: {fileID: 8300000, guid: 8ae6082738de24549b8da4a315eae956, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
