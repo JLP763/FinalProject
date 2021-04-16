@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gemstones >= 150)
+        if (gemstones >= 250)
         {
             EndGame();
         }
@@ -94,5 +94,10 @@ public class GameManager : MonoBehaviour
     public void GameOverLost()
     {
         SceneManager.LoadScene(3);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
